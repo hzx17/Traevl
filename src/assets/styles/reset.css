@@ -8,6 +8,9 @@ Author: Zhenglin Li
 
 */
 
+html{
+  font-size: 13.3333333333333vw;
+}
 html, body, div, span, object, iframe,
 
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -36,11 +39,10 @@ time, mark, audio, video {
 
     padding:0;
 
+
     border:0;
 
     outline:0;
-
-    font-size:100%;
 
     vertical-align:baseline;
 
@@ -53,6 +55,8 @@ time, mark, audio, video {
 body {
 
     line-height:1;
+
+    font-size: 3.7333333333vw;
 
 }
 

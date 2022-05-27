@@ -37,3 +37,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
      fastClick.attach(document.body)
     ```
  ## 在阿里巴巴矢量图库创建项目
+
+ # 5月26日总结
+      完成了项目的搭建，完成了home组件下的header，
+  
