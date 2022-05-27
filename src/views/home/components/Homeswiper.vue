@@ -23,7 +23,8 @@ export default {
       swiperOption:{
          pagination: '.swiper-pagination',
          //轮播插件支持循环
-         loop : true
+         loop : true,
+        //  autoplay: 3000,
       },
       swiperList:[
           {
@@ -43,7 +44,7 @@ export default {
           }
       ]
     }
-  }
+  },
 }
 </script>
 
