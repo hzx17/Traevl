@@ -41,3 +41,9 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
  # 5月26日总结
       完成了项目的搭建，完成了home组件下的header，
   
+
+# 编写home-swiper
+      * 安装vue-awesome-swiper:  npm install swiper@5 vue-awesome-swiper@2.6.7 --save   
+      (需要指定swiper与vue-awesome-swiper版本)
+      * 全局引入
+      * 编写组件
