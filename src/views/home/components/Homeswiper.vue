@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-    <swiper :options="swiperOption">
+  <div class="wrapper" v-if="showSwiper">
+    <swiper :options="swiperOption" >
       <!-- slides -->
       <swiper-slide   v-for="item in swiperList" :key="item.id">
         <img class="image-swiper" :src="item.imgUrl" alt="轮播图">
@@ -24,27 +24,16 @@ export default {
          pagination: '.swiper-pagination',
          //轮播插件支持循环
          loop : true,
-        //  autoplay: 3000,
-      },
-      swiperList:[
-          {
-            id:"001",
-            imgUrl:"http://rcj536al9.hn-bkt.clouddn.com//traevl/traevlswipe.jpg"
-          },{
-            id:"002",
-            imgUrl:"http://rcj536al9.hn-bkt.clouddn.com//traevl/traevlswiper3.jpg"
-          },
-          {
-            id:"003",
-            imgUrl:"http://rcj536al9.hn-bkt.clouddn.com//traevl/traevlswiper1.jpg"
-          },
-          {
-            id:"004",
-            imgUrl:"http://rcj536al9.hn-bkt.clouddn.com//traevl/traevlswiper2.jpg"
-          }
-      ]
+         autoplay:false
+      },     
     }
   },
+  props:['swiperList'],
+  computed:{
+    showSwiper(){
+      return this.swiperList.length
+    }
+  }
 }
 </script>
 

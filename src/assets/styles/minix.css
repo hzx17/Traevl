@@ -3,3 +3,9 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: block;
+  clear: both;
+}

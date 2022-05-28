@@ -47,3 +47,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
       (需要指定swiper与vue-awesome-swiper版本)
       * 全局引入
       * 编写组件
+
+# 编写home-icons
+     * 默认设置为两排，用swiper组件轮播，利用计算属性计算pages[]数组
+
+
+## 5月27日总结
+   完成了轮播图与图标组件的编写

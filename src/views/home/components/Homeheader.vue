@@ -6,16 +6,19 @@
     <div class="header-input">
        <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩项目</div>
-    <div class="header-select">
-      城市
-      <span class="iconfont">&#xeb6d;</span>
-    </div>
+    <router-link to="/city/china">
+      <div class="header-select">
+        {{this.city}}
+        <span class="iconfont">&#xeb6d;</span>
+      </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home-header'
+  name: 'Home-header',
+  props:['city']
 }
 </script>
 
@@ -50,6 +53,8 @@ export default {
   }
   .header-select{
      width: 1.24rem;
+     color: #fff;
+    //  text-decoration: none;
      text-align: center;
      padding: .1rem;
      line-height: .66rem;
