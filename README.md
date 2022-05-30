@@ -54,3 +54,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ## 5月27日总结
    完成了轮播图与图标组件的编写
+
+## 5月28日总结
+    1. 完成了机票推荐组件，使用axios请求数据，props传参
+    2. 完成了城市页面布局，采用axios请求数据，全局事件总线传参（在main.js中设置全局事件总线，为传参组件触发一个事件，接收参数的组件绑定事件）
+    3.scroll使用别人写好的组件better-scroll

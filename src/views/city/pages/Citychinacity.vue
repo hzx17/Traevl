@@ -1,74 +1,29 @@
 <template>
-  <div class="wrapper-citylist" ref="wrapper" >
+  <div class="wrapper-citylist" ref="wrapper">
     <div>
       <div class="area">
         <div class="title">你的位置</div>
         <div class="button-lists clearfix">
           <div class="button-wrapper">
-            <div class="button">北京</div>
+            <div class="button">成都</div>
           </div>
         </div>
       </div>
       <div class="area">
         <div class="title">热门城市</div>
         <div class="button-lists clearfix">
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
-          </div>
-          <div class="button-wrapper">
-            <div class="buttonhot">北京</div>
+          <div class="button-wrapper" v-for="item in hotCities" :key="item.id">
+            <div class="buttonhot">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title">A</div>
-        <ul class="item-lists">
-          <li class="city-list">阿坝藏族羌族自治区</li>
-          <li class="city-list">阿克苏地区</li>
-          <li class="city-list">阿拉尔</li>
-          <li class="city-list">巴中</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">B</div>
-        <ul class="item-lists">
-          <li class="city-list">阿坝藏族羌族自治区</li>
-          <li class="city-list">阿克苏地区</li>
-          <li class="city-list">阿拉尔</li>
-          <li class="city-list">巴中</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title">A</div>
-        <ul class="item-lists">
-          <li class="city-list">阿坝藏族羌族自治区</li>
-          <li class="city-list">阿克苏地区</li>
-          <li class="city-list">阿拉尔</li>
-          <li class="city-list">巴中</li>
-        </ul>
-      </div>
-      <div class="area">
-        <div class="title border-topbottom">B</div>
-        <ul class="item-lists">
-          <li class="city-list">阿坝藏族羌族自治区</li>
-          <li class="city-list">阿克苏地区</li>
-          <li class="city-list">阿拉尔</li>
-          <li class="city-list">巴中</li>
+      <div  class="area" v-for="(item,index) in cities" 
+      :key="index"
+      :ref="index"
+      >
+        <div class="title">{{index}}</div>
+        <ul class="item-lists" v-for="itemInner in item" :key="itemInner.id">
+          <li class="city-list">{{itemInner.name}}</li>
         </ul>
       </div>
     </div>
@@ -76,12 +31,41 @@
 </template>
 
 <script>
-import BScroll from '@better-scroll/core'
+import BScroll from 'better-scroll'
 export default {
   name:'Citychinacity',
+  data(){
+    return{
+      hotCities:'',
+      cities:'',
+      letter:''
+    }
+  },
+  watch:{
+    letter(){
+      if(this.letter){
+        const element =this.$refs[this.letter][0]
+        this.scroll.scrollToElement(element)
+      }
+    }
+  },
+  beforeCreate (){
+      this.$bus.$on('citydata',data=>{
+        if(data.status==200){
+         this.hotCities=data.data.hotCities
+         this.cities=data.data.cities
+        }
+      })
+  },
+  updated(){
+    this.scroll.refresh()
+  },
   mounted () {
-     this.scroll =  new BScroll(this.$refs.wrapper)
-  }
+    this.scroll = new BScroll(this.$refs.wrapper);
+    this.$bus.$on('change',data=>{
+      this.letter=data
+    })
+  },
 }
 </script>
 

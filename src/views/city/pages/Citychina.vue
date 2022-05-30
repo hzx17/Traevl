@@ -13,8 +13,7 @@ export default {
   components:{
     Citychinacity,
     Cityalphabet
-  }
-
+  },
 }
 </script>
 
