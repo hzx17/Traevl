@@ -32,7 +32,6 @@ export default {
   methods:{
     handlerletterclick(e){
       this.$bus.$emit('change',e.target.innerText)
-      console.log(e.target.innerText)
     },
     /* 触摸函数开始 */
     handlerlettertouch(){

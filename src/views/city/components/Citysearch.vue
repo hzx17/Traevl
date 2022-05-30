@@ -5,7 +5,7 @@
     </div>
      <div class="search-result" ref="searchwrapper" v-show="keyWord"  >
         <ul >
-          <li class="item-search" v-for="(item,index) of list" :key="index">{{item}}</li>
+          <li class="item-search" @click="handlerSelectCity" v-for="(item,index) of list" :key="index">{{item}}</li>
           <li class="item-search" v-show="!list.length">未找到该城市，请重新输入！</li>
         </ul>
     </div>
@@ -22,6 +22,14 @@ export default {
       cities:'',
       keyWord:'',
       list:''
+    }
+  },
+  methods:{
+    handlerSelectCity(e){
+      //调用dispatch,派发修改城市事件
+      const city=e.target.innerText
+      this.$store.dispatch('changeCity',city)
+      this.$router.push("/")
     }
   },
   watch:{

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Homeheader :city='city' ></Homeheader>
+    <Homeheader></Homeheader>
     <Homeswiper :swiperList="swiperList"/>
     <Homeicons :iconList="iconList"/>
     <Homerecommend :jipiao="jipiao"/>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import  {mapState} from 'vuex'
 import Homeheader from '../home/components/Homeheader.vue'
 import Homeswiper from '../home/components/Homeswiper.vue'
 import Homeicons from '../home/components/Homeicons.vue'
@@ -30,17 +31,19 @@ export default {
   },
   data(){
     return{
-      city:'',
+      lastCity:'',
       swiperList:[],
       iconList:[],
       jipiao:''
     }
   },
+  computed:{
+    ...mapState(['city'])
+  },
   methods:{
     getHomeInfo(){
-      axios.get('http://localhost:5000/api/Homeinfo').then(response=>{
+      axios.get(`http://localhost:5000/api/Homeinfo?city=${this.city}`).then(response=>{
         if(response.data.status==0){
-          this.city=response.data.data.city
           this.swiperList=response.data.data.swiperList
           this.iconList=response.data.data.iconList
           this.jipiao=response.data.data.jipiao
@@ -48,10 +51,17 @@ export default {
       }).catch(error=>{
         console.log(error)
       })
+    },
+  },
+  activated(){
+    if(this.lastCity!==this.city){
+      this.lastCity=this.city
+      this.getHomeInfo()
     }
   },
   mounted(){
-    this.getHomeInfo()    
+    this.getHomeInfo()  
+    this.lastCity=this.city  
   }
 }
 </script>

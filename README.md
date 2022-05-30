@@ -59,3 +59,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
     1. 完成了机票推荐组件，使用axios请求数据，props传参
     2. 完成了城市页面布局，采用axios请求数据，全局事件总线传参（在main.js中设置全局事件总线，为传参组件触发一个事件，接收参数的组件绑定事件）
     3.scroll使用别人写好的组件better-scroll
+
+
+## 5月30日总结
+     1.城市数据联动，采用全局事件总线来完成，当点击字母或触摸字母，触发函数，为该函数触发全局事件总线的事件，为城市页绑定事件
+     2.触摸字母表时，触发touchstart，touchmove，touchend事件，设置一个定时器完成节流
+     3.点击城市，使用vuex来存储当前城市，
+     4.使用keepalive来保存组件活性，当首页重新选择城市了以后，在actived声明周期在发一次ajax请求。

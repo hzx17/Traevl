@@ -7,23 +7,26 @@
        <span class="iconfont">&#xe632;</span>
       输入城市/景点/游玩项目</div>
     <router-link to="/city/china">
-      <div class="header-select">
-        {{this.city}}
+      <div class="header-select">{{city}}
         <span class="iconfont">&#xeb6d;</span>
-      </div>
+      </div> 
     </router-link>
   </div>
 </template>
 
 <script>
+  import {mapState}  from 'vuex'
 export default {
   name: 'Home-header',
-  props:['city']
+  computed:{
+    ...mapState(['city'])
+  }
 }
 </script>
 
 <style lang='less' scoped>
 @import '../../../assets/styles/commom.less';
+@import '../../../assets/styles/minix.less';
 .header{
   background-color:@color-bg;
   height: 0.86rem;
@@ -33,6 +36,7 @@ export default {
   flex-flow: row wrap;
   //主轴对齐方式
   // justify-content: space-between;
+  align-items: center;
   color: #fff;
   .header-icon{
     width: .64rem;
@@ -52,12 +56,11 @@ export default {
     line-height: .42rem;
   }
   .header-select{
-     width: 1.24rem;
+     min-width: 1.24rem;
+     max-width: 1.8rem;
      color: #fff;
-    //  text-decoration: none;
      text-align: center;
-     padding: .1rem;
-     line-height: .66rem;
+     word-wrap:break-word;
   }
 }
 </style>

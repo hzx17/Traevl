@@ -2,10 +2,10 @@
   <div class="wrapper-citylist" ref="wrapper">
     <div>
       <div class="area">
-        <div class="title">你的位置</div>
+        <div class="title">当前城市</div>
         <div class="button-lists clearfix">
           <div class="button-wrapper">
-            <div class="button">成都</div>
+            <div class="button">{{currentCity}}</div>
           </div>
         </div>
       </div>
@@ -13,7 +13,7 @@
         <div class="title">热门城市</div>
         <div class="button-lists clearfix">
           <div class="button-wrapper" v-for="item in hotCities" :key="item.id">
-            <div class="buttonhot">{{item.name}}</div>
+            <div class="buttonhot" @click="handlerSelectCity">{{item.name}}</div>
           </div>
         </div>
       </div>
@@ -23,7 +23,7 @@
       >
         <div class="title">{{index}}</div>
         <ul class="item-lists" v-for="itemInner in item" :key="itemInner.id">
-          <li class="city-list">{{itemInner.name}}</li>
+          <li class="city-list" @click="handlerSelectCity">{{itemInner.name}}</li>
         </ul>
       </div>
     </div>
@@ -32,6 +32,7 @@
 
 <script>
 import BScroll from 'better-scroll'
+import {mapState,mapActions} from 'vuex'
 export default {
   name:'Citychinacity',
   data(){
@@ -48,6 +49,20 @@ export default {
         this.scroll.scrollToElement(element)
       }
     }
+  },
+  computed:{
+    ...mapState({
+      'currentCity':'city'
+    })
+  },
+  methods:{
+    handlerSelectCity(e){
+      //调用dispatch,派发修改城市事件
+      const city=e.target.innerText
+      this.changeCity(city)
+      this.$router.push("/")
+    },
+    ...mapActions(['changeCity'])
   },
   beforeCreate (){
       this.$bus.$on('citydata',data=>{
