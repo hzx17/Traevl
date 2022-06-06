@@ -1,27 +1,27 @@
 <template>
   <div class="wrapper-recommend">
-    <div class="title">优惠机票</div>
+    <div class="title">热门景区</div>
     <div class="recommend-lists">
-      <div class="list" v-for="item in jipiao" :key="item.id">
+      <router-link class="list" 
+        slot="li"
+        v-for="item in spot" 
+        :key="item.id"
+        :to="'/detail/'+item.id"
+      >
         <div class="img-icon-top">
           <div class="img-box">
             <img :src="item.imgUrl" alt="">
           </div>
-          <div class="text-title">
-             <div class="text-in">
-              <p class="text1"><span>{{item.cityto}}</span></p>
-              <p class="text2"><span>{{item.coupon}}</span></p>
-            </div>
-          </div>
         </div>
         <div class="list-text">
+          <p class="list-loc"><span>{{item.loc}}</span></p>
           <p class="list-describe"><span>{{item.describe}}</span></p>
-          <p class="list-price">￥<span>{{item.price}}</span></p>
+          <!-- <p class="list-price">￥<span>{{item.price}}</span></p> -->
         </div>
-      </div>
+      </router-link>
     </div>
     <div class="more">
-      <span>更多机票特惠</span>
+      <span>更多热门推荐</span>
       <span class="iconfont">&#xe65f;</span>
     </div>
   </div>
@@ -29,12 +29,12 @@
 
 <script>
 export default {
-  name:'Homerecommend',
+  name:'Homespot',
   data(){
-    return{ 
-    }
+    return{   
+    } 
   },
-  props:['jipiao']
+  props:['spot']
 }
 </script>
 
@@ -56,7 +56,6 @@ export default {
     justify-content: space-between;
     .list{
       width:3.48rem ;
-
       // height: 3.64rem;
       .img-icon-top{
         width: 3.48rem;
@@ -70,40 +69,24 @@ export default {
                border-radius: .1rem;
           }
         }
-        .text-title{
-          position:absolute;
-          bottom: 0;
-          width: 100%;
-          .text-in{ 
-            width: 2.3rem;
-            margin: 0 auto;
-            padding: .1rem .24rem;
-            background-color: rgba(00, 00, 00, .6);
-          .text1:extend(.ellipsis){
-            font-size: .28rem;
-            text-align: center;
-            color: #fff;
-            padding-bottom:.16rem ;
-          }
-          .text2:extend(.ellipsis){
-            font-size: @font-icon;
-            color: #ffde00;
-              text-align: center;
-          }
-        } 
-        }
       }
       .list-text{
         padding: .1rem;
-        .list-describe{
+        .list-loc{
+          color: #333;
+          font-weight: 600;
+          padding:0rem .01rem .1rem 0rem ;
+          font-size: .28rem;
+        }
+        .list-describe:extend(.ellipsis){
           font-weight: 200;
           font-size: .24rem;
-          padding:0.1rem .01rem .1rem 0rem ;
+          padding:0rem .01rem .1rem 0rem ;
         }
         .list-price{
           color: @price-color;
           font-weight: 600;
-          padding:0.04rem .01rem .1rem 0rem ;
+          padding:0.1rem .01rem .1rem 0rem ;
           font-size: .36rem;
         }
       }

@@ -3,10 +3,8 @@
     <Homeheader></Homeheader>
     <Homeswiper :swiperList="swiperList"/>
     <Homeicons :iconList="iconList"/>
+    <Homespot :spot="spot"/>
     <Homerecommend :jipiao="jipiao"/>
-    <Homeselection/>
-    <Homezhoumo/>
-
   </div>
 </template>
 
@@ -16,8 +14,7 @@ import Homeheader from '../home/components/Homeheader.vue'
 import Homeswiper from '../home/components/Homeswiper.vue'
 import Homeicons from '../home/components/Homeicons.vue'
 import Homerecommend from '../home/components/Homerecommend.vue'
-import Homezhoumo from '../home/components/Homezhoumo.vue'
-import Homeselection from '../home/components/Homeselection.vue'
+import Homespot from '../home/components/Homespot.vue'
 import axios from 'axios'
 export default {
   name: 'Home',
@@ -26,15 +23,15 @@ export default {
     Homeswiper,
     Homeicons,
     Homerecommend,
-    Homezhoumo,
-    Homeselection
+    Homespot,
   },
   data(){
     return{
       lastCity:'',
       swiperList:[],
       iconList:[],
-      jipiao:''
+      jipiao:'',
+      spot:''
     }
   },
   computed:{
@@ -47,6 +44,7 @@ export default {
           this.swiperList=response.data.data.swiperList
           this.iconList=response.data.data.iconList
           this.jipiao=response.data.data.jipiao
+          this.spot=response.data.data.spot
         }
       }).catch(error=>{
         console.log(error)
